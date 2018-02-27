@@ -1,0 +1,28 @@
+{
+    "extends": ["eslint:recommended"],
+    "env": {
+        "es6": true,
+        "node": true
+    },
+    "parserOptions": {
+        "sourceType": "module",
+        "ecmaFeatures": {},
+        "ecmaVersion": 7
+    },
+    "rules": {
+        "indent": [
+            "warn",
+            4,
+            {
+                "SwitchCase": 1
+            }
+        ],
+        "semi": ["error", "always"],
+        "quotes": ["error", "double"],
+        "comma-dangle": ["error", "always-multiline"],
+        "no-console": ["warn", { "allow": ["info", "warn", "error"] }]
+    },
+    "globals": {
+        "google": false
+    }
+}
