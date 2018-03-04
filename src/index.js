@@ -4,8 +4,10 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 
+const config = require("../config");
+
 // Database setup
-mongoose.connect("mongodb://localhost/auth");
+mongoose.connect(config.mongoUri);
 
 // App setup
 const router = require("./router");
