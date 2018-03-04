@@ -11,7 +11,7 @@ userSchema.pre("save", function(next) {
     const user = this;
 
     bcrypt
-        .genSalt(10)
+        .genSalt(12)
         .then(salt =>
             bcrypt.hash(user.password, salt).then(hash => {
                 user.password = hash;
@@ -20,6 +20,10 @@ userSchema.pre("save", function(next) {
         )
         .catch(next);
 });
+
+userSchema.methods.comparePassword = function(candidatePassword) {
+    return bcrypt.compare(candidatePassword, this.password);
+};
 
 const ModelClass = mongoose.model("user", userSchema);
 
