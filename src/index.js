@@ -3,6 +3,7 @@ const http = require("http");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
+const cors = require("cors");
 
 const config = require("../config");
 
@@ -13,6 +14,7 @@ mongoose.connect(config.mongoUri);
 const router = require("./router");
 const app = express();
 app.use(morgan("combined"));
+app.use(cors());
 app.use(bodyParser.json({ type: "*/*" }));
 router(app);
 
