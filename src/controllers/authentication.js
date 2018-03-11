@@ -12,17 +12,17 @@ exports.signin = function(req, res) {
 };
 
 exports.signup = function(req, res, next) {
-    const { email: reqEmail, password } = req.body;
+    const { name, email: reqEmail, password } = req.body;
 
-    if (!reqEmail || !password) return res.status(422).send({ error: "You must provide email and password" });
+    if (!name || !reqEmail || !password) return res.status(422).send("You must provide name, email and password");
 
     const email = reqEmail.toLowerCase();
 
     User.findOne({ email })
         .then(existingUser => {
-            if (existingUser) return res.status(422).send({ error: "Email already used" });
+            if (existingUser) return res.status(422).send("Email already used");
 
-            const user = new User({ email, password });
+            const user = new User({ name, email, password });
 
             user
                 .save()
